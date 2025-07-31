@@ -1,0 +1,210 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 11% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 210 11% 8%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 210 11% 8%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 210 20% 95%;
+    --primary-foreground: 210 11% 8%;
+
+    --secondary: 210 13% 12%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 210 13% 12%;
+    --muted-foreground: 210 15% 65%;
+
+    --accent: 210 13% 12%;
+    --accent-foreground: 210 20% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 210 13% 15%;
+    --input: 210 13% 15%;
+    --ring: 210 40% 80%;
+    --sidebar-background: 210 11% 8%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 210 40% 80%;
+    --sidebar-primary-foreground: 210 11% 8%;
+    --sidebar-accent: 210 13% 12%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 210 13% 15%;
+    --sidebar-ring: 210 40% 80%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 210 11% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 8%;
+
+    --primary: 210 11% 8%;
+    --primary-foreground: 210 20% 95%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 210 11% 8%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 210 11% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 11% 8%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+}
+
+/* Custom animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-3d-slow {
+  0% {
+    transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg);
+  }
+  25% {
+    transform: rotateX(45deg) rotateY(90deg) rotateZ(30deg);
+  }
+  50% {
+    transform: rotateX(75deg) rotateY(180deg) rotateZ(0deg);
+  }
+  75% {
+    transform: rotateX(30deg) rotateY(270deg) rotateZ(-30deg);
+  }
+  100% {
+    transform: rotateX(60deg) rotateY(360deg) rotateZ(0deg);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float-star {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(10px) translateY(-10px);
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(20px) translateY(-20px);
+    opacity: 0.1;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
+/* 3D rotation for orbital rings */
+.transform-gpu {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Floating projects animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(-5px) rotate(-1deg); }
+  75% { transform: translateY(-15px) rotate(0.5deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-float-delayed-2 {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 4s;
+}
