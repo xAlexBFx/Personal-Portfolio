@@ -273,13 +273,13 @@ const Hero = () => {
                         {/* Action buttons */}
                         <div className="pt-3 flex gap-3">
                           <button 
-                            className="flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 cursor-pointer"
+                            className="flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] cursor-pointer"
                             onClick={() => window.open(project.github, '_blank')}
                           >
                             GitHub
                           </button>
                           <button 
-                            className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                           className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                             onClick={() => project.deployed && window.open(project.deployedLink, '_blank')}
                             title={!project.deployed ? 'Not Deployed Yet' : ''}
                           >

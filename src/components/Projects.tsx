@@ -65,7 +65,7 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+        {projects.slice(0, 6).map((project, index) => (
             <div
               key={index}
               className="group relative cursor-pointer"
@@ -256,7 +256,7 @@ const Projects = () => {
                   {projects.map((project, index) => (
                     <div
                       key={index}
-                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl cursor-pointer"
+                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl cursor-pointer mt-[3%]"
                       onClick={() => handleProjectClick(index)}
                     >
                       {/* Image container */}
