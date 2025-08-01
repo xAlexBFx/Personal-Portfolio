@@ -50,6 +50,12 @@ const Projects = () => {
     setSelectedProject(null);
   };
 
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      closeModal();
+    }
+  };
+
   return (
     <section id="projects" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -158,7 +164,7 @@ const Projects = () => {
         </div>
 
         {/* Project Detail Modal */}
-        <Dialog open={selectedProject !== null} onOpenChange={(open) => !open && closeModal()}>
+        <Dialog open={selectedProject !== null} onOpenChange={handleOpenChange}>
           <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] bg-background/95 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden p-0 flex flex-col">
             {selectedProject !== null && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full overflow-y-auto">
@@ -256,7 +262,7 @@ const Projects = () => {
                   {projects.map((project, index) => (
                     <div
                       key={index}
-                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl cursor-pointer mt-[3%]"
+                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl cursor-pointer mt-[4%]"
                       onClick={() => handleProjectClick(index)}
                     >
                       {/* Image container */}

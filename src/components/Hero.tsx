@@ -5,6 +5,17 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
+  const handleProjectClick = (index: number) => {
+    setSelectedProject(index);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+  };
 
   useEffect(() => {
     setIsVisible(true);
@@ -206,9 +217,9 @@ const Hero = () => {
         }`}>
           <Dialog>
             <DialogTrigger asChild>
-              <button className="group relative bg-gradient-to-r from-slate-700 to-gray-800 text-white px-8 py-4 rounded-xl font-bold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-slate-500/25">
+              <button className="group relative bg-gradient-to-r from-slate-600 to-gray-700 text-white px-8 py-4 rounded-xl font-bold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-slate-500/25 transform">
                 <span className="relative z-10">Explore Work</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-slate-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </DialogTrigger>
             <DialogContent className="max-w-none w-screen h-screen p-0 bg-background border-0">
@@ -220,7 +231,8 @@ const Hero = () => {
                   {projects.map((project, index) => (
                     <div
                       key={index}
-                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl"
+                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl cursor-pointer mt-[4%]"
+                      onClick={() => handleProjectClick(index)}
                     >
                       {/* Image container */}
                       <div className="relative overflow-hidden">
@@ -271,18 +283,30 @@ const Hero = () => {
                         </div>
 
                         {/* Action buttons */}
-                        <div className="pt-3 flex gap-3">
+                        <div className="pt-4 flex gap-4">
                           <button 
                             className="flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] cursor-pointer"
-                            onClick={() => window.open(project.github, '_blank')}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(project.github, '_blank');
+                            }}
                           >
+                            <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.083.682-.233.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                            </svg>
                             GitHub
                           </button>
                           <button 
-                           className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-                            onClick={() => project.deployed && window.open(project.deployedLink, '_blank')}
+                            className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              project.deployed && window.open(project.deployedLink, '_blank');
+                            }}
                             title={!project.deployed ? 'Not Deployed Yet' : ''}
                           >
+                            <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M21 13v10h-6v-6H3v-2h12V3h6v10h-3z"/>
+                            </svg>
                             Browse
                           </button>
                         </div>
@@ -299,7 +323,7 @@ const Hero = () => {
               const subject = "Interested Person from Portfolio";
               const body = `Hi Alex,
 
-I'm interested in working with you and would like to discuss potential collaboration opportunities.
+I'm interested in...
 
 Best regards,`;
               const mailtoUrl = `mailto:alexbetancesx@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
