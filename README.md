@@ -28,7 +28,7 @@ A modern, responsive personal portfolio website built with React, TypeScript, an
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-Hosted project Link: [...]
+Hosted project: [Link](https://betancesdev.netlify.app)
 
 
 
