@@ -125,7 +125,7 @@ const Projects = () => {
                   </p>
                   
                   {/* Full tech stack */}
-                  <div className="flex flex-wrap gap-2 pt-2 flex-grow">
+                  <div className="flex flex-wrap gap-2 pt-2">
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
