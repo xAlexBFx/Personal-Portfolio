@@ -26,7 +26,7 @@ const About = () => {
               <div className="group relative">
                 <div className="text-center p-8 bg-gradient-to-br from-background/50 to-muted/50 backdrop-blur-sm border border-border/50 rounded-2xl group-hover:border-slate-400/50 transition-all duration-500">
                   <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-gray-200 mb-3">
-                    3+
+                    4+
                   </div>
                   <div className="text-muted-foreground font-medium">Years of Learning Path</div>
                 </div>
@@ -63,7 +63,7 @@ const About = () => {
                     <h4 className="font-bold text-foreground text-lg group-hover:text-gray-300 transition-colors duration-300">
                       Backend Development
                     </h4>
-                    <p className="text-muted-foreground">Node.js, MongoDB | Database Architecture</p>
+                    <p className="text-muted-foreground">Node.js, Flask, FastAPI, MongoDB | Database Architecture</p>
                   </div>
                 </div>
                 <div className="group flex items-start space-x-4">

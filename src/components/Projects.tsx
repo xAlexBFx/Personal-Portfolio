@@ -13,6 +13,7 @@ const Projects = () => {
       tech: ["JavaScript", "Node.js", "MongoDB", "CSS", "HTML"],
       image: "https://github.com/user-attachments/assets/10453940-a64e-4839-b71c-c5af38e5847d",
       github: "https://github.com/xAlexBFx/S-Music-Website",
+      deployedGithub: true,
       deployed: false,
     },
     {
@@ -21,16 +22,18 @@ const Projects = () => {
       tech: ["React", "Python", "Flask", "HTML", "CSS", "TypeScript"],
       image: "https://github.com/user-attachments/assets/2ba5be81-1f34-40ab-b301-a5f8b2510c07",
       github: "https://github.com/xAlexBFx/Image_Manipulator",
+      deployedGithub: true,
       deployed: true,
       deployedLink: "https://image-manipulator.windsurf.build/"
     },
     {
       title: "High School Website",
-      description: "A website for my high school that allows users to interact with other users through a publication system.",
-      tech: ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB"],
-      image: "https://github.com/user-attachments/assets/a1a155c9-862b-400f-9b1c-8caf7694b6b7",
-      github: "https://github.com/xAlexBFx/BINcA-Website",
-      deployed: false,
+      description: "My High school's official website that I created and maintained using SquareSpace.",
+      tech: ["SquareSpace", "Blender", "GitHub"],
+      image: "https://images.squarespace-cdn.com/content/v1/6904d09298f9a31d04520407/1c1e88b5-31f1-48a0-aabc-a8283d456672/BINcA+Logo+good.png?format=1500w",
+      deployedGithub: false,
+      deployed: true,
+      deployedLink: "https://www.bincabps.org"
     },
     {
       title: "Task Manager App",
@@ -38,6 +41,7 @@ const Projects = () => {
       tech: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
       image: "https://github.com/user-attachments/assets/36fa52cc-2fd4-45ed-ae72-ff1df0ffc2c8",
       github: "https://github.com/xAlexBFx/Tasks-Manager",
+      deployedGithub: true,
       deployed: false,
     },
   ];
@@ -82,7 +86,7 @@ const Projects = () => {
               {/* Animated background glow */}
               <div className="absolute -inset-4 bg-gradient-to-r from-slate-600/0 via-gray-600/0 to-slate-600/0 group-hover:from-slate-600/20 group-hover:via-gray-600/20 group-hover:to-slate-600/20 rounded-3xl blur-xl transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
               
-              <div className="relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-105 group-hover:border-slate-400/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-slate-500/10">
+              <div className="relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-105 group-hover:border-slate-400/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-slate-500/10 h-full flex flex-col">
                 {/* Image container */}
                 <div className="relative overflow-hidden">
                   <img
@@ -112,7 +116,7 @@ const Projects = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-4 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold text-foreground group-hover:text-slate-300 transition-colors duration-300">
                     {project.title}
                   </h3>
@@ -121,7 +125,7 @@ const Projects = () => {
                   </p>
                   
                   {/* Full tech stack */}
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="flex flex-wrap gap-2 pt-2 flex-grow">
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
@@ -133,10 +137,11 @@ const Projects = () => {
                   </div>
 
                   {/* Action buttons */}
-                  <div className="pt-4 flex gap-4">
+                  <div className="pt-4 flex gap-4 mt-auto">
                     <button 
-                      className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] cursor-pointer`}
-                      onClick={() => window.open(project.github, '_blank')}
+                      className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${project.deployedGithub === false ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                      onClick={() => project.deployedGithub !== false && window.open(project.github, '_blank')}
+                      title={project.deployedGithub === false ? 'No GitHub Repository' : ''}
                     >
                       <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.083.682-.233.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
@@ -215,7 +220,13 @@ const Projects = () => {
                           href={projects[selectedProject].github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-foreground py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-[1.02]"
+                          className={`flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-foreground py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-[1.02] ${projects[selectedProject].deployedGithub === false ? 'opacity-50 cursor-not-allowed' : ''}`}
+                          onClick={(e) => {
+                            if (projects[selectedProject].deployedGithub === false) {
+                              e.preventDefault();
+                            }
+                          }}
+                          title={projects[selectedProject].deployedGithub === false ? 'No GitHub Repository' : ''}
                         >
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.083.682-.233.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
@@ -316,11 +327,12 @@ const Projects = () => {
                         {/* Action buttons */}
                         <div className="pt-4 flex gap-4">
                           <button 
-                            className="flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] cursor-pointer"
+                            className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${project.deployedGithub === false ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              window.open(project.github, '_blank');
+                              project.deployedGithub !== false && window.open(project.github, '_blank');
                             }}
+                            title={project.deployedGithub === false ? 'No GitHub Repository' : ''}
                           >
                             <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.083.682-.233.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>

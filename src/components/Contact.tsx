@@ -123,16 +123,6 @@ ${formData.name}`;
                 </div>
                 
                 <div className="group flex items-center space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-gray-500 to-slate-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-white font-bold text-xl">📱</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-foreground text-lg">Phone</h4>
-                    <p className="text-muted-foreground">+1 (857) 346-8284</p>
-                  </div>
-                </div>
-                
-                <div className="group flex items-center space-x-4">
                   <div className="w-14 h-14 bg-gradient-to-br from-slate-600 to-gray-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <span className="text-white font-bold text-xl">🌍</span>
                   </div>
