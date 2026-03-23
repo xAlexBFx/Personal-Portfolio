@@ -153,8 +153,8 @@ const Projects = () => {
                       onClick={() => project.deployed && window.open(project.deployedLink, '_blank')}
                       title={!project.deployed ? 'Not Deployed Yet' : ''}
                     >
-                      <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 13v10h-6v-6H3v-2h12V3h6v10h-3z"/>
+                      <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                       </svg>
                       Browse
                     </button>
@@ -240,8 +240,8 @@ const Projects = () => {
                             rel="noopener noreferrer"
                             className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-foreground py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-[1.02]"
                           >
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M21 13v10h-6v-6H3v-2h12V3h6v10h-3z"/>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                             </svg>
                             Live Demo
                           </a>
@@ -347,8 +347,8 @@ const Projects = () => {
                             }}
                             title={!project.deployed ? 'Not Deployed Yet' : ''}
                           >
-                            <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M21 13v10h-6v-6H3v-2h12V3h6v10h-3z"/>
+                            <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                             </svg>
                             Browse
                           </button>
