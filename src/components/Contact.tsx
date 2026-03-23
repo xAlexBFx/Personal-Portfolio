@@ -204,7 +204,7 @@ ${formData.name}`;
       <footer className="mt-20 pt-8 border-t border-border/50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2025 Betances. All rights reserved.</p>
+            <p>&copy; 2026 Betances. All rights reserved.</p>
           </div>
         </div>
       </footer>
