@@ -1,50 +1,14 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { projects } from "@/data/projects";
+import LazyImage from "@/components/LazyImage";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
-  const projects = [
-    {
-      title: "Music Reproduction Platform",
-      description: "S-Services is an AI-based music reproduction platform that allows users to listen to music from around the world. Allowing the user to interact with other users, settings, profile setup, and more.",
-      tech: ["JavaScript", "Node.js", "MongoDB", "CSS", "HTML"],
-      image: "https://github.com/user-attachments/assets/10453940-a64e-4839-b71c-c5af38e5847d",
-      github: "https://github.com/xAlexBFx/S-Music-Website",
-      deployedGithub: true,
-      deployed: false,
-    },
-    {
-      title: "Image Manipulator App",
-      description: "An image manipulation app that allows users to upload and experience AI training tools like Convolutional kernels in image processing etc.",
-      tech: ["React", "Python", "Flask", "HTML", "CSS", "TypeScript"],
-      image: "https://github.com/user-attachments/assets/2ba5be81-1f34-40ab-b301-a5f8b2510c07",
-      github: "https://github.com/xAlexBFx/Image_Manipulator",
-      deployedGithub: true,
-      deployed: true,
-      deployedLink: "https://image-manipulator.windsurf.build/"
-    },
-    {
-      title: "High School Website",
-      description: "My High school's official website that I created and maintained using SquareSpace.",
-      tech: ["SquareSpace", "Blender", "GitHub"],
-      image: "https://images.squarespace-cdn.com/content/v1/6904d09298f9a31d04520407/1c1e88b5-31f1-48a0-aabc-a8283d456672/BINcA+Logo+good.png?format=1500w",
-      deployedGithub: false,
-      deployed: true,
-      deployedLink: "https://www.bincabps.org"
-    },
-    {
-      title: "Task Manager App",
-      description: "A task manager app that allows users to manage their tasks and to-dos with a user-friendly interface and a database to store their tasks.",
-      tech: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
-      image: "https://github.com/user-attachments/assets/36fa52cc-2fd4-45ed-ae72-ff1df0ffc2c8",
-      github: "https://github.com/xAlexBFx/Tasks-Manager",
-      deployedGithub: true,
-      deployed: false,
-    },
-  ];
 
   const handleProjectClick = (index: number) => {
     setSelectedProject(index);
@@ -89,7 +53,7 @@ const Projects = () => {
               <div className="relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-105 group-hover:border-slate-400/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-slate-500/10 h-full flex flex-col">
                 {/* Image container */}
                 <div className="relative overflow-hidden">
-                  <img
+                  <LazyImage
                     src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
@@ -171,11 +135,17 @@ const Projects = () => {
         {/* Project Detail Modal */}
         <Dialog open={selectedProject !== null} onOpenChange={handleOpenChange}>
           <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] bg-background/95 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden p-0 flex flex-col">
+            <VisuallyHidden>
+              <DialogTitle>Project Details</DialogTitle>
+              <DialogDescription>
+                Detailed view of the selected project including description, technologies used, and links to GitHub and live demo
+              </DialogDescription>
+            </VisuallyHidden>
             {selectedProject !== null && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 h-full overflow-y-auto">
                 {/* Left column - Image */}
                 <div className="relative h-full min-h-[40vh] lg:min-h-full bg-muted/20">
-                  <img
+                  <LazyImage
                     src={projects[selectedProject].image}
                     alt={projects[selectedProject].title}
                     className="absolute inset-0 w-full h-full object-cover"
@@ -278,7 +248,7 @@ const Projects = () => {
                     >
                       {/* Image container */}
                       <div className="relative overflow-hidden">
-                        <img
+                        <LazyImage
                           src={project.image}
                           alt={project.title}
                           className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"

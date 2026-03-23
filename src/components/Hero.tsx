@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { projects } from "@/data/projects";
+import LazyImage from "@/components/LazyImage";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,42 +42,6 @@ const Hero = () => {
     { text: "MongoDB", subtitle: "Database", position: { top: "65%", right: "5%" }, delay: "2.5s" },
   ];
 
-  // Projects data (same as Projects component)
-  const projects = [
-    {
-      title: "Music Reproduction Platform",
-      description: "S-Services is an AI-based music reproduction platform that allows users to listen to music from around the world. Allowing the user to interact with other users, settings, profile setup, and more.",
-      tech: ["JavaScript", "Node.js", "MongoDB", "CSS", "HTML"],
-      image: "https://github.com/user-attachments/assets/10453940-a64e-4839-b71c-c5af38e5847d",
-      github: "https://github.com/xAlexBFx/S-Music-Website",
-      deployed: false,
-    },
-    {
-      title: "Image Manipulator App",
-      description: "An image manipulation app that allows users to upload and experience AI training tools like Convolutional kernels in image processing etc.",
-      tech: ["React", "Python", "Flask", "HTML", "CSS", "TypeScript"],
-      image: "https://github.com/user-attachments/assets/2ba5be81-1f34-40ab-b301-a5f8b2510c07",
-      github: "https://github.com/xAlexBFx/Image_Manipulator",
-      deployed: true,
-      deployedLink: "https://image-manipulator.windsurf.build/"
-    },
-    {
-      title: "High School Website",
-      description: "A website for my high school that allows users to interact with other users through a publication system.",
-      tech: ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB"],
-      image: "https://github.com/user-attachments/assets/a1a155c9-862b-400f-9b1c-8caf7694b6b7",
-      github: "https://github.com/xAlexBFx/BINcA-Website",
-      deployed: false,
-    },
-    {
-      title: "Task Manager App",
-      description: "A task manager app that allows users to manage their tasks and to-dos with a user-friendly interface and a database to store their tasks.",
-      tech: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
-      image: "https://github.com/user-attachments/assets/36fa52cc-2fd4-45ed-ae72-ff1df0ffc2c8",
-      github: "https://github.com/xAlexBFx/Tasks-Manager",
-      deployed: false,
-    },
-  ];
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-[200vw] sm:pt-[160vw] md:pt-80 pb-16 md:pb-48">      
@@ -184,7 +150,7 @@ const Hero = () => {
         <div className={`flex justify-center mb-48 sm:mb-40 md:mb-16 transform transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-80' : 'translate-y-20 opacity-0'
         }`}>
-          <img
+          <LazyImage
             src="/lovable-uploads/me.png"
             alt="Betances Picture"
             className="w-[80%] h-[80%] md:w-[55%] md:h-[55%] lg:w-[70%] lg:h-[70%] object-cover"
