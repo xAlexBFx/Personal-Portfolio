@@ -52,11 +52,11 @@ export const projects: Project[] = [
     title: "Elysian Restaurant Website",
     description: "(Prototype) A modern, responsive prototype website for Elysian Restaurant built with React and TypeScript.",
     tech: ["TypeScript", "React", "CSS", "Tailwind", "Node.js"],
-    image: "",
+    image: "https://github.com/user-attachments/assets/2133fd22-abb0-4d77-a413-826254b5971d",
     github: "https://github.com/xAlexBFx/elysian-menu",
     deployedGithub: true,
     deployed: true,
-    deployedLink: ""
+    deployedLink: "https://elysianrestaurant.netlify.app"
   },
   {
     title: "Task Manager App",
