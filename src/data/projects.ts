@@ -43,10 +43,20 @@ export const projects: Project[] = [
     title: "BOLO Recognition AI",
     description: "Windows app that uses AI with the focus on Computer Vision. This app is designed to classify objects in, recognize people's faces by name, and explain context of images in ALL in real-time.",
     tech: ["Python", "API", "DeepFace"],
-    image: "https://private-user-images.githubusercontent.com/127577835/569373720-26e63181-8f57-40cf-884d-bddf39fcd2a7.jpg?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzQ0NzcyNzcsIm5iZiI6MTc3NDQ3Njk3NywicGF0aCI6Ii8xMjc1Nzc4MzUvNTY5MzczNzIwLTI2ZTYzMTgxLThmNTctNDBjZi04ODRkLWJkZGYzOWZjZDJhNy5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMzI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDMyNVQyMjE2MTdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xNjQ4MWQ5NGVlMjJjNjEwMTA5MzMwNDlhNzhhZDViOTMwNDgxZTRhNTk2MWI0NTAyYWYwYWVmNjQ5OTg1MTQxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.VwZ184bZBFGe5fio_0P0XgXnNFXdVq_vq0TLHBLBvDo",
+    image: "https://github.com/user-attachments/assets/26e63181-8f57-40cf-884d-bddf39fcd2a7",
     github: "https://github.com/xAlexBFx/Facial_Recognition_Project",
     deployedGithub: true,
     deployed: false,
+  },
+    {
+    title: "Elysian Restaurant Website",
+    description: "(Prototype) A modern, responsive prototype website for Elysian Restaurant built with React and TypeScript.",
+    tech: ["TypeScript", "React", "CSS", "Tailwind", "Node.js"],
+    image: "",
+    github: "https://github.com/xAlexBFx/elysian-menu",
+    deployedGithub: true,
+    deployed: true,
+    deployedLink: ""
   },
   {
     title: "Task Manager App",
