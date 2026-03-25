@@ -134,7 +134,7 @@ const Projects = () => {
 
         {/* Project Detail Modal */}
         <Dialog open={selectedProject !== null} onOpenChange={handleOpenChange}>
-          <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] bg-background/95 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden p-0 flex flex-col">
+          <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] bg-background/95 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden p-0 mt- flex flex-col">
             <VisuallyHidden>
               <DialogTitle>Project Details</DialogTitle>
               <DialogDescription>
@@ -236,7 +236,7 @@ const Projects = () => {
             </DialogTrigger>
             <DialogContent className="max-w-none w-screen h-screen p-0 bg-background border-0">
               <DialogHeader className="p-6 border-b border-border/50">
-                <DialogTitle className="text-3xl font-bold text-foreground">All Projects</DialogTitle>
+                <DialogTitle className="text-3xl font-bold mt-1 text-foreground">All Projects</DialogTitle>
               </DialogHeader>
               <ScrollArea className="h-full p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6">
