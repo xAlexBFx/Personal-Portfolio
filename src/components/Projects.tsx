@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { projects } from "@/data/projects";
@@ -28,18 +29,21 @@ const Projects = () => {
     <section id="projects" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-7xl font-black text-foreground mb-8">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-gray-200 to-slate-400 animate-gradient-x">Work</span>
-          </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-slate-400 to-gray-300 mx-auto mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore my latest projects showcasing modern web development and innovative solutions
-          </p>
+          <ScrollReveal animation="fade-up">
+            <h2 className="text-5xl lg:text-7xl font-black text-foreground mb-8">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-gray-200 to-slate-400 animate-gradient-x">Work</span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-slate-400 to-gray-300 mx-auto mb-8"></div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore my latest projects showcasing modern web development and innovative solutions
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.slice(0, 6).map((project, index) => (
+            <ScrollReveal key={index} animation="fade-up" delay={index * 100} duration={700}>
             <div
               key={index}
               className="group relative cursor-pointer"
@@ -129,7 +133,8 @@ const Projects = () => {
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-slate-400/20 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               </div>
             </div>
-          ))}
+            </ScrollReveal>
+            ))}
         </div>
 
         {/* Project Detail Modal */}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 import ReactIcon from "../assets/icons/react-original.svg";
 import MongooseIcon from "../assets/icons/mongoose-original.svg";
 import NodeIcon from "../assets/icons/nodejs-original.svg";
@@ -220,16 +221,19 @@ const Skills = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground mb-4 sm:mb-6 lg:mb-8">
-              Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-gray-200">Arsenal</span>
-            </h2>
-            <div className="w-20 sm:w-24 lg:w-32 h-1 bg-gradient-to-r from-slate-400 to-gray-300 mx-auto mb-4 sm:mb-6 lg:mb-8"></div>
-            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-              Hover over each technology to learn more about my expertise
-            </p>
+            <ScrollReveal animation="fade-up">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground mb-4 sm:mb-6 lg:mb-8">
+                Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-300 to-gray-200">Arsenal</span>
+              </h2>
+              <div className="w-20 sm:w-24 lg:w-32 h-1 bg-gradient-to-r from-slate-400 to-gray-300 mx-auto mb-4 sm:mb-6 lg:mb-8"></div>
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+                Hover over each technology to learn more about my expertise
+              </p>
+            </ScrollReveal>
           </div>
 
-          <div className="relative flex items-center justify-center h-64 sm:h-80 md:h-96">
+          <ScrollReveal animation="scale" delay={200} duration={1000}>
+            <div className="relative flex items-center justify-center h-64 sm:h-80 md:h-96">
             {skills.map((skill, index) => {
               const angle = (index / skills.length) * 2 * Math.PI;
               const x = centerX + radius * Math.cos(angle);
@@ -270,6 +274,7 @@ const Skills = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-slate-400 to-gray-300 rounded-full animate-ping opacity-30"></div>
             </div>
           </div>
+          </ScrollReveal>
 
           {hoveredSkill !== null && !isScrolling && (
             <div 

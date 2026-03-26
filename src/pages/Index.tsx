@@ -52,6 +52,9 @@ const Index = () => {
           <Contact />
           <ScrollToTop />
         </div>
+        
+        {/* Noise texture overlay */}
+        <div className="noise-overlay"></div>
       </div>
     </ThemeProvider>
   );
