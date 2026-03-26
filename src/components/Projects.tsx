@@ -50,7 +50,7 @@ const Projects = () => {
               {/* Animated background glow */}
               <div className="absolute -inset-4 bg-gradient-to-r from-slate-600/0 via-gray-600/0 to-slate-600/0 group-hover:from-slate-600/20 group-hover:via-gray-600/20 group-hover:to-slate-600/20 rounded-3xl blur-xl transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
               
-              <div className="relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-105 group-hover:border-slate-400/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-slate-500/10 h-full flex flex-col">
+              <div className="relative frosted glass-glow rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-105 hover:glass-glow-strong h-full flex flex-col">
                 {/* Image container */}
                 <div className="relative overflow-hidden">
                   <LazyImage
@@ -66,13 +66,13 @@ const Projects = () => {
                     {project.tech.slice(0, 2).map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 py-1 bg-background/80 backdrop-blur-sm text-xs font-medium text-slate-300 rounded-full border border-slate-400/30"
+                        className="px-2 py-1 frosted text-xs font-medium text-slate-300 rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.tech.length > 2 && (
-                      <span className="px-2 py-1 bg-background/80 backdrop-blur-sm text-xs font-medium text-muted-foreground rounded-full border border-border/50">
+                      <span className="px-2 py-1 frosted text-xs font-medium text-muted-foreground rounded-full">
                         +{project.tech.length - 2}
                       </span>
                     )}
@@ -93,7 +93,7 @@ const Projects = () => {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-muted/50 text-xs font-medium text-muted-foreground rounded-full group-hover:bg-slate-400/10 group-hover:text-slate-300 transition-all duration-300"
+                        className="px-3 py-1 frosted text-xs font-medium text-muted-foreground rounded-full group-hover:text-slate-300 transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -103,21 +103,21 @@ const Projects = () => {
                   {/* Action buttons */}
                   <div className="pt-4 flex gap-4 mt-auto">
                     <button 
-                      className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${project.deployedGithub === false ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                      className={`flex-1 bg-slate-700 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-slate-600 hover:shadow-lg hover:scale-105 transform ${project.deployedGithub === false ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                       onClick={() => project.deployedGithub !== false && window.open(project.github, '_blank')}
                       title={project.deployedGithub === false ? 'No GitHub Repository' : ''}
                     >
-                      <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.083.682-.233.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                       </svg>
                       GitHub
                     </button>
                     <button 
-                      className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                      className={`flex-1 bg-gray-600 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-gray-500 hover:shadow-lg hover:scale-105 transform ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                       onClick={() => project.deployed && window.open(project.deployedLink, '_blank')}
                       title={!project.deployed ? 'Not Deployed Yet' : ''}
                     >
-                      <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                       </svg>
                       Browse
@@ -126,7 +126,7 @@ const Projects = () => {
                 </div>
 
                 {/* Floating corner accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-slate-400/20 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-slate-400/20 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               </div>
             </div>
           ))}
@@ -134,7 +134,7 @@ const Projects = () => {
 
         {/* Project Detail Modal */}
         <Dialog open={selectedProject !== null} onOpenChange={handleOpenChange}>
-          <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] bg-background/95 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden p-0 mt- flex flex-col">
+          <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] frosted border border-white/10 rounded-2xl overflow-hidden p-0 flex flex-col">
             <VisuallyHidden>
               <DialogTitle>Project Details</DialogTitle>
               <DialogDescription>
@@ -175,7 +175,7 @@ const Projects = () => {
                         {projects[selectedProject].tech.map((tech, index) => (
                           <span
                             key={index}
-                            className="px-3 py-1.5 bg-muted/50 text-sm font-medium text-muted-foreground rounded-full"
+                            className="px-3 py-1.5 frosted text-sm font-medium text-muted-foreground rounded-full"
                           >
                             {tech}
                           </span>
@@ -184,13 +184,13 @@ const Projects = () => {
                     </div>
                     
                     {/* Action buttons - fixed at the bottom of scrollable area */}
-                    <div className="pt-4 pb-6 sticky bottom-0 bg-background/95 backdrop-blur-sm -mx-8 px-8 lg:-mx-10 lg:px-10">
-                      <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
+                    <div className="pt-4 pb-6 sticky bottom-0 bg-background/95 backdrop-blur-sm border-t border-border/50 -mx-8 px-8 lg:-mx-10 lg:px-10">
+                      <div className="flex flex-col sm:flex-row gap-4 pt-4">
                         <a
                           href={projects[selectedProject].github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-foreground py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-[1.02] ${projects[selectedProject].deployedGithub === false ? 'opacity-50 cursor-not-allowed' : ''}`}
+                          className={`flex-1 flex items-center justify-center gap-2 bg-slate-700 text-white py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-slate-600 hover:shadow-lg hover:scale-[1.02] ${projects[selectedProject].deployedGithub === false ? 'opacity-50 cursor-not-allowed' : ''}`}
                           onClick={(e) => {
                             if (projects[selectedProject].deployedGithub === false) {
                               e.preventDefault();
@@ -208,7 +208,7 @@ const Projects = () => {
                             href={projects[selectedProject].deployedLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-foreground py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-[1.02]"
+                            className="flex-1 flex items-center justify-center gap-2 bg-gray-600 text-white py-2.5 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-gray-500 hover:shadow-lg hover:scale-[1.02]"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -234,7 +234,7 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </DialogTrigger>
-            <DialogContent className="max-w-none w-screen h-screen p-0 bg-background border-0">
+            <DialogContent className="max-w-none w-screen h-screen p-0 frosted border-0">
               <DialogHeader className="p-6 border-b border-border/50">
                 <DialogTitle className="text-3xl font-bold mt-1 text-foreground">All Projects</DialogTitle>
               </DialogHeader>
@@ -243,7 +243,7 @@ const Projects = () => {
                   {projects.map((project, index) => (
                     <div
                       key={index}
-                      className="group relative bg-background/60 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:border-slate-400/50 shadow-lg hover:shadow-xl cursor-pointer mt-[4%]"
+                      className="group relative frosted rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:glass-glow cursor-pointer mt-[4%]"
                       onClick={() => handleProjectClick(index)}
                     >
                       {/* Image container */}
@@ -260,13 +260,13 @@ const Projects = () => {
                           {project.tech.slice(0, 2).map((tech, techIndex) => (
                             <span
                               key={techIndex}
-                              className="px-2 py-1 bg-background/80 backdrop-blur-sm text-xs font-medium text-slate-300 rounded-full border border-slate-400/30"
+                              className="px-2 py-1 frosted text-xs font-medium text-slate-300 rounded-full"
                             >
                               {tech}
                             </span>
                           ))}
                           {project.tech.length > 2 && (
-                            <span className="px-2 py-1 bg-background/80 backdrop-blur-sm text-xs font-medium text-muted-foreground rounded-full border border-border/50">
+                            <span className="px-2 py-1 frosted text-xs font-medium text-muted-foreground rounded-full">
                               +{project.tech.length - 2}
                             </span>
                           )}
@@ -287,7 +287,7 @@ const Projects = () => {
                           {project.tech.map((tech, techIndex) => (
                             <span
                               key={techIndex}
-                              className="px-2 py-1 bg-muted/50 text-xs font-medium text-muted-foreground rounded-full group-hover:bg-slate-400/10 group-hover:text-slate-300 transition-all duration-300"
+                              className="px-2 py-1 frosted text-xs font-medium text-muted-foreground rounded-full group-hover:text-slate-300 transition-all duration-300"
                             >
                               {tech}
                             </span>
@@ -297,27 +297,27 @@ const Projects = () => {
                         {/* Action buttons */}
                         <div className="pt-4 flex gap-4">
                           <button 
-                            className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${project.deployedGithub === false ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                            className={`flex-1 bg-slate-700 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-slate-600 hover:shadow-lg hover:scale-105 transform ${project.deployedGithub === false ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                             onClick={(e) => {
                               e.stopPropagation();
                               project.deployedGithub !== false && window.open(project.github, '_blank');
                             }}
                             title={project.deployedGithub === false ? 'No GitHub Repository' : ''}
                           >
-                            <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.083.682-.233.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                             </svg>
                             GitHub
                           </button>
                           <button 
-                            className={`flex-1 bg-gradient-to-r from-slate-600/10 to-gray-600/10 border border-slate-400/30 text-slate-300 py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:from-slate-600/20 hover:to-gray-600/20 hover:border-slate-400/50 hover:shadow-lg hover:shadow-slate-500/20 hover:scale-105 transform hover:translate-y-[-1px] ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                            className={`flex-1 bg-gray-600 text-white py-2 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-gray-500 hover:shadow-lg hover:scale-105 transform ${!project.deployed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                             onClick={(e) => {
                               e.stopPropagation();
                               project.deployed && window.open(project.deployedLink, '_blank');
                             }}
                             title={!project.deployed ? 'Not Deployed Yet' : ''}
                           >
-                            <svg className="w-5 h-5 inline-block mr-2 transition-transform duration-300 hover:scale-110 hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                             </svg>
                             Browse

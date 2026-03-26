@@ -109,8 +109,7 @@ const Hero = () => {
             animationDelay: info.delay,
           }}
         >
-          <div className="relative">
-            <div className="bg-background/80 backdrop-blur-sm border border-border/50 rounded-2xl p-6 text-center shadow-2xl min-w-[120px]">
+          <div className="glass-gradient-border glass-glow p-6 text-center min-w-[120px] glass-shine">
               <div className="text-xl font-black text-foreground mb-2">
                 {info.text}
               </div>
@@ -118,7 +117,6 @@ const Hero = () => {
                 {info.subtitle}
               </div>
             </div>
-          </div>
         </div>
       ))}
 
@@ -132,7 +130,7 @@ const Hero = () => {
             }`}
             style={{ animationDelay: `${index * 0.2}s` }}
           >
-            <div className="bg-background/80 backdrop-blur-sm border border-border/50 rounded-xl p-4 text-center shadow-xl">
+            <div className="glass-gradient-border glass-glow p-4 text-center glass-shine">
               <div className="text-sm font-bold text-foreground mb-2">
                 {info.text}
               </div>
