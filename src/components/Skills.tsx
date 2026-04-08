@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ReactIcon from "../assets/icons/react-original.svg";
+import TypeScriptIcon from "../assets/icons/typescript-original.svg";
+import TensorflowIcon from "../assets/icons/tensorflow-original.svg";
+import SQLOriginalIcon from "../assets/icons/sql-original.svg";
 import MongooseIcon from "../assets/icons/mongoose-original.svg";
 import NodeIcon from "../assets/icons/nodejs-original.svg";
 import PythonIcon from "../assets/icons/python-original.svg";
@@ -23,7 +26,7 @@ const Skills = () => {
       icon: ReactIcon,
       color: "#61DAFB",
       description: "React is a JavaScript library for building user interfaces. Expert in component architecture, state management, and building reusable UI components. Experience with React Router, Redux, and modern React patterns.",
-      level: "Advanced"
+      level: "Expert"
     },
     { 
       name: "Mongoose", 
@@ -47,6 +50,13 @@ const Skills = () => {
       level: "Expert"
     },
     { 
+      name: "TensorFlow", 
+      icon: TensorflowIcon,
+      color: "#FF6F00",
+      description: "TensorFlow is an open-source machine learning framework developed by Google. Proficient in building neural networks, deep learning models, and computer vision applications. Experience with TensorFlow Lite for mobile deployment, model optimization, and integrating ML capabilities into web and mobile applications.",
+      level: "Intermediate"
+    },
+    { 
       name: "MongoDB", 
       icon: MongoDBIcon,
       color: "#47A248",
@@ -59,6 +69,20 @@ const Skills = () => {
       color: "#F7DF1E",
       description: "JavaScript is the core programming language of the web. Expert in ES6+ features, DOM manipulation, and event handling. Proficient in functional programming, async/await, and modern JavaScript patterns. Strong understanding of browser APIs and cross-browser compatibility.",
       level: "Expert"
+    },
+    { 
+      name: "TypeScript", 
+      icon: TypeScriptIcon,
+      color: "#3178C6",
+      description: "TypeScript is a strongly typed programming language that builds on JavaScript. Expert in type definitions, generics, and advanced type patterns. Proficient in building type-safe applications, interfaces, and leveraging TypeScript's type system for better code quality and maintainability.",
+      level: "Expert"
+    },
+    { 
+      name: "SQL", 
+      icon: SQLOriginalIcon,
+      color: "#00758F",
+      description: "SQL is a domain-specific language used for managing relational databases. Advanced in writing complex queries, joins, subqueries, and stored procedures. Proficient in database design, optimization, indexing strategies, and working with various database systems like MySQL, PostgreSQL, and SQL Server.",
+      level: "Advanced"
     },
     { 
       name: "HTML5", 
@@ -79,7 +103,7 @@ const Skills = () => {
       icon: GitIcon,
       color: "#F05032",
       description: "Git is a distributed version control system. Expert in branching strategies, merge workflows, and repository management. Proficient in Git hooks, rebasing, and resolving conflicts. Strong understanding of Git best practices and collaboration workflows.",
-      level: "Intermediate"
+      level: "Expert"
     }
   ];
 
