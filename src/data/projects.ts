@@ -13,7 +13,7 @@ export const projects: Project[] = [
   {
     title: "Listen-E",
     description: "Listen E is a smart app that tells you what sounds are happening around you. Just open the app, and it listens to your environment and identifies sounds in real-time. This is available in Web/Apple/Android",
-    tech: ["React Native", "Flask", "Python", "AI", "TypeScript", "Tailwind"],
+    tech: ["React Native", "Tensorflow", "Flask", "Python", "AI", "TypeScript", "Tailwind"],
     image: "https://github.com/user-attachments/assets/f75be5f3-45b3-4d17-9c04-a9e3569871c0",
     github: "https://github.com/xAlexBFx/enviroment-sound-classifier-app",
     deployedGithub: true,
