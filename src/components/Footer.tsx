@@ -316,11 +316,17 @@ const TiltLinkCard = ({
       onMouseMove={!isMobile ? handleMove : undefined}
       onMouseLeave={!isMobile ? handleLeave : undefined}
       onBlur={!isMobile ? handleLeave : undefined}
-      className="group relative rounded-2xl border border-border/50 bg-background/25 backdrop-blur-xl p-6 sm:p-7 transition-colors duration-300 hover:border-border focus:outline-none focus:ring-2 focus:ring-slate-400/20"
+      className="group relative rounded-2xl border bg-background/35 backdrop-blur-xl p-6 sm:p-7 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-slate-400/20 shadow-md"
       style={{
         transform,
         transition: "transform 220ms ease, border-color 220ms ease",
         transformStyle: "preserve-3d",
+        borderColor: link.color === 'blue' ? 'rgba(96, 165, 250, 0.2)' :
+                   link.color === 'green' ? 'rgba(74, 222, 128, 0.2)' :
+                   'rgba(251, 146, 60, 0.2)',
+        backgroundColor: link.color === 'blue' ? 'rgba(96, 165, 250, 0.05)' :
+                        link.color === 'green' ? 'rgba(74, 222, 128, 0.05)' :
+                        'rgba(251, 146, 60, 0.05)'
       }}
     >
       <div
@@ -353,29 +359,7 @@ const TiltLinkCard = ({
           </div>
         </div>
 
-        <div className="mt-5">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
-          <div
-            className="mt-4 rounded-xl border border-border/30 bg-background/10 backdrop-blur-md p-3 relative overflow-hidden"
-            style={{
-              backgroundImage: shine,
-              transition: "background-image 120ms ease",
-            }}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full h-0.5 bg-border/20 relative overflow-hidden backdrop-blur-sm">
-                <div className={`absolute inset-0 bg-gradient-to-r from-transparent ${
-                  link.color === 'blue' ? 'via-blue-400/70' :
-                  link.color === 'green' ? 'via-green-400/70' :
-                  'via-orange-400/70'
-                } to-transparent animate-shimmer backdrop-blur-xs`}></div>
               </div>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/2 pointer-events-none"></div>
-            <span className="sr-only">Interactive link card</span>
-          </div>
-        </div>
-      </div>
     </a>
   );
 };

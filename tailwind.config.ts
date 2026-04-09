@@ -92,12 +92,21 @@ export default {
 					'100%': {
 						transform: 'translateX(100%)'
 					}
+				},
+				'spin-slow': {
+					'0%': {
+						transform: 'rotateY(0deg)'
+					},
+					'100%': {
+						transform: 'rotateY(360deg)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'shimmer': 'shimmer 3s infinite'
+				'shimmer': 'shimmer 3s infinite',
+				'spin-slow': 'spin-slow 3s linear infinite'
 			}
 		}
 	},
