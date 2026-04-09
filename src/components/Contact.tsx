@@ -208,17 +208,6 @@ ${formData.name}`;
           </ScrollReveal>
         </div>
       </div>
-      
-      {/* Glowing circle in footer background */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-96 h-96 bg-gradient-to-t from-slate-500/20 via-gray-500/10 to-transparent rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-      
-      <footer className="mt-20 pt-8 border-t border-border/50 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-muted-foreground">
-            <p>&copy; 2026 Betances. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </section>
   );
 };

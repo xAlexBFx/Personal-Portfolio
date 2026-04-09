@@ -30,12 +30,20 @@ const NotFound = () => {
       <div className="fixed inset-0 bg-gradient-to-br from-background via-muted/30 to-background"></div>
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-muted/10 via-background to-background"></div>
       
-      {/* Global mouse light effect */}
+      {/* Global mouse light effect - prominent light following cursor */}
       <div 
-        className="fixed w-96 h-96 bg-white/[0.015] rounded-full blur-3xl transition-all duration-300 ease-out pointer-events-none -z-10"
+        className="fixed w-96 h-96 bg-white/10 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
         style={{
           left: mousePosition.x - 192,
           top: mousePosition.y - 192,
+        }}
+      ></div>
+      {/* Secondary cursor glow for enhanced effect */}
+      <div 
+        className="fixed w-48 h-48 bg-slate-300/20 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
+        style={{
+          left: mousePosition.x - 96,
+          top: mousePosition.y - 96,
         }}
       ></div>
       
@@ -44,30 +52,7 @@ const NotFound = () => {
       <div className="fixed bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-gray-500/3 to-slate-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
       <div className="fixed top-1/2 right-1/4 w-64 h-64 bg-gradient-to-r from-slate-600/3 to-gray-600/3 rounded-full blur-3xl animate-pulse delay-2000"></div>
 
-      {/* Moving space stars effect */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 150 }).map((_, i) => {
-            const baseLeft = Math.random() * 100;
-            const baseTop = Math.random() * 100;
-            const moveX = (mousePosition.x / window.innerWidth - 0.5) * 0.1;
-            const moveY = (mousePosition.y / window.innerHeight - 0.5) * 0.1;
             
-          return (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse transition-all duration-1000 ease-out"
-              style={{
-                left: `${baseLeft + moveX}%`,
-                top: `${baseTop + moveY}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${1 + Math.random() * 2}s`,
-                animation: `float-star ${1 + Math.random() * 4}s linear infinite`,
-              }}
-            ></div>
-          );
-        })}
-      </div>
-      
       {/* Floating geometric shapes */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-white/15 rotate-45 animate-bounce delay-300"></div>

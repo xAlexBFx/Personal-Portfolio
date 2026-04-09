@@ -220,29 +220,7 @@ const Skills = () => {
           '--popout-visible': popoutVisible ? '1' : '0'
         } as React.CSSProperties}
       >
-        <div className="absolute inset-0">
-          {Array.from({ length: 100 }).map((_, i) => {
-            const baseLeft = Math.random() * 100;
-            const baseTop = Math.random() * 100;
-            const moveX = (mousePosition.x / window.innerWidth - 0.5) * 0.05;
-            const moveY = (mousePosition.y / window.innerHeight - 0.5) * 0.05;
-            
-            return (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-white/15 rounded-full animate-pulse transition-all duration-1000 ease-out"
-                style={{
-                  left: `${baseLeft + moveX}%`,
-                  top: `${baseTop + moveY}%`,
-                  animationDelay: `${Math.random() * 2}s`,
-                  animationDuration: `${1 + Math.random() * 2}s`,
-                  animation: `float-star ${1 + Math.random() * 4}s linear infinite`,
-                }}
-              ></div>
-            );
-          })}
-        </div>
-
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <ScrollReveal animation="fade-up">

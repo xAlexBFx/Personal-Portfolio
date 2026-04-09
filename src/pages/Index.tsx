@@ -4,9 +4,9 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
+import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const Index = () => {
@@ -28,12 +28,20 @@ const Index = () => {
         <div className="fixed inset-0 bg-gradient-to-br from-background via-muted/30 to-background"></div>
         <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-muted/10 via-background to-background"></div>
         
-        {/* Global mouse light effect - subtle white behind everything */}
+        {/* Global mouse light effect - prominent light following cursor */}
         <div 
-          className="fixed w-96 h-96 bg-white/[0.015] rounded-full blur-3xl transition-all duration-300 ease-out pointer-events-none -z-10"
+          className="fixed w-96 h-96 bg-white/10 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
           style={{
             left: mousePosition.x - 192,
             top: mousePosition.y - 192,
+          }}
+        ></div>
+        {/* Secondary cursor glow for enhanced effect */}
+        <div 
+          className="fixed w-48 h-48 bg-slate-300/20 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
+          style={{
+            left: mousePosition.x - 96,
+            top: mousePosition.y - 96,
           }}
         ></div>
         
@@ -49,7 +57,7 @@ const Index = () => {
           <About />
           <Skills />
           <Projects />
-          <Contact />
+          <Footer />
           <ScrollToTop />
         </div>
         

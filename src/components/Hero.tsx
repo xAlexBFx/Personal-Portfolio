@@ -4,11 +4,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { projects } from "@/data/projects";
 import LazyImage from "@/components/LazyImage";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
@@ -25,49 +27,33 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
+    if (isMobile) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
-  // Floating info cards data - focused on skills and projects rather than experience
-  const floatingInfo = [
-    { text: "Full-Stack", subtitle: "Developer", position: { top: "25%", left: "8%" }, delay: "0s" },
-    { text: "React Expert", subtitle: "Frontend", position: { top: "35%", right: "10%" }, delay: "0.5s" },
-    { text: "JavaScript", subtitle: "Pro", position: { bottom: "45%", left: "6%" }, delay: "1s" },
-    { text: "Node.js", subtitle: "Backend", position: { bottom: "35%", right: "8%" }, delay: "1.5s" },
-    { text: "UI/UX", subtitle: "Design", position: { top: "55%", left: "3%" }, delay: "2s" },
-    { text: "MongoDB", subtitle: "Database", position: { top: "65%", right: "5%" }, delay: "2.5s" },
-  ];
 
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-[200vw] sm:pt-[160vw] md:pt-80 pb-16 md:pb-48">      
-      {/* Moving space stars effect - much slower movement */}
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-[120vw] sm:pt-[100vw] md:pt-80 pb-16 md:pb-48">      
+      {/* Enhanced glassmorphism background that blends with global theme */}
       <div className="absolute inset-0">
-        {Array.from({ length: 150 }).map((_, i) => {
-            const baseLeft = Math.random() * 100;
-            const baseTop = Math.random() * 100;
-            const moveX = (mousePosition.x / window.innerWidth - 0.5) * 0.1;
-            const moveY = (mousePosition.y / window.innerHeight - 0.5) * 0.1;
-            
-          return (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse transition-all duration-1000 ease-out"
-              style={{
-                left: `${baseLeft + moveX}%`,
-                top: `${baseTop + moveY}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${1 + Math.random() * 2}s`,
-                animation: `float-star ${1 + Math.random() * 4}s linear infinite`,
-              }}
-            ></div>
-          );
-        })}
+        {/* Subtle overlay that enhances global background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background/40 via-muted/20 to-background/40"></div>
+        <div className="absolute inset-0 backdrop-blur-xl"></div>
+        
+        {/* Enhanced versions of global orbs with more intensity for Hero section */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-slate-500/8 to-gray-500/8 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-gray-500/8 to-slate-500/8 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-slate-600/4 to-gray-600/4 rounded-full filter blur-3xl animate-pulse delay-500"></div>
+        
+        {/* Hero-specific subtle accent */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"></div>
       </div>
       
       {/* Floating geometric shapes */}
@@ -98,56 +84,13 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Floating info cards with better spacing - NO HOVER EFFECTS */}
-      {floatingInfo.map((info, index) => (
-        <div
-          key={index}
-          className={`absolute transform transition-all duration-1000 hidden md:block ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-          }`}
-          style={{
-            ...info.position,
-            animationDelay: info.delay,
-          }}
-        >
-          <div className="glass-gradient-border glass-glow p-6 text-center min-w-[120px] glass-shine">
-              <div className="text-xl font-black text-foreground mb-2">
-                {info.text}
-              </div>
-              <div className="text-sm text-muted-foreground">
-                {info.subtitle}
-              </div>
-            </div>
-        </div>
-      ))}
 
-      {/* Mobile info cards in a grid - with much more spacing */}
-      <div className="md:hidden absolute top-[100vw] sm:top-[100vw] left-4 right-4 grid grid-cols-2 gap-6 z-10">
-        {floatingInfo.slice(0, 4).map((info, index) => (
-          <div
-            key={index}
-            className={`transform transition-all duration-1000 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-            }`}
-            style={{ animationDelay: `${index * 0.2}s` }}
-          >
-            <div className="glass-gradient-border glass-glow p-4 text-center glass-shine">
-              <div className="text-sm font-bold text-foreground mb-2">
-                {info.text}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {info.subtitle}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
       
       {/* Central content with much more spacing for mobile */}
       <div className="text-center space-y-24 sm:space-y-20 md:space-y-12 relative z-20">
         {/* Image with vanishing effect - much more spacing for mobile */}
         <ScrollReveal animation="scale" duration={800}>
-          <div className={`flex justify-center mb-48 sm:mb-40 md:mb-16 transform transition-all duration-1000 ${
+          <div className={`flex justify-center mb-32 sm:mb-24 md:mb-16 transform transition-all duration-1000 ${
             isVisible ? 'translate-y-0 opacity-80' : 'translate-y-20 opacity-0'
           }`}>
             <LazyImage
@@ -197,6 +140,15 @@ const Hero = () => {
               <span className="relative z-10">Explore Work</span>
               <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
+            <a 
+              href="/assets/resume/Alex Betances Work Resume.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative border-2 border-border text-foreground px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 hover:border-slate-400 overflow-hidden text-center"
+            >
+              <span className="relative z-10 group-hover:text-slate-300 transition-colors duration-300">View Resume</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-700/10 to-gray-800/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+            </a>
             <button 
               className="group relative border-2 border-border text-foreground px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 hover:border-slate-400 overflow-hidden"
               onClick={() => {
