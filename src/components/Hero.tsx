@@ -40,7 +40,7 @@ const Hero = () => {
 
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-[120vw] sm:pt-[100vw] md:pt-80 pb-16 md:pb-48">      
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-28 md:pt-80 pb-16 md:pb-48">      
       {/* Enhanced glassmorphism background that blends with global theme */}
       <div className="absolute inset-0">
         {/* Subtle overlay that enhances global background */}
