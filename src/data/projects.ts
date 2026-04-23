@@ -30,14 +30,14 @@ export const projects: Project[] = [
     deployed: false,
   },
   {
-    title: "Image Manipulator App",
-    description: "An image manipulation app that allows users to upload and experience AI training tools like Convolutional kernels in image processing etc.",
+    title: "Image Black Box",
+    description: "An image manipulation app that allows users to uncover the 'black box' of a deep learning model in computer vision.",
     tech: ["React", "Python", "Flask", "HTML", "CSS", "TypeScript"],
-    image: "https://github.com/user-attachments/assets/2ba5be81-1f34-40ab-b301-a5f8b2510c07",
+    image: "https://github.com/user-attachments/assets/19ad0e1b-e791-425c-8c85-2b2bcc7ef674",
     github: "https://github.com/xAlexBFx/Image_Manipulator",
     deployedGithub: true,
     deployed: true,
-    deployedLink: "https://image-manipulator.windsurf.build/"
+    deployedLink: "https://imageblackbox.netlify.app"
   },
   {
     title: "High School Website",
