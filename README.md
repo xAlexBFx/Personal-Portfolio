@@ -23,11 +23,6 @@ A modern, responsive personal portfolio website built with React, TypeScript, an
   - React Hook Form (Form Handling)
   - React Query (Data Fetching)
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
 Hosted project: [Link](https://betancesdev.netlify.app)
 
 

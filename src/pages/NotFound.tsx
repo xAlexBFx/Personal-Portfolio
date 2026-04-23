@@ -6,6 +6,7 @@ const NotFound = () => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [enableCursorLight, setEnableCursorLight] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -16,13 +17,25 @@ const NotFound = () => {
   }, [location.pathname]);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    const update = () => setEnableCursorLight(mediaQuery.matches);
+    update();
+
+    mediaQuery.addEventListener('change', update);
+    return () => mediaQuery.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (!enableCursorLight) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [enableCursorLight]);
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
@@ -30,22 +43,26 @@ const NotFound = () => {
       <div className="fixed inset-0 bg-gradient-to-br from-background via-muted/30 to-background"></div>
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-muted/10 via-background to-background"></div>
       
-      {/* Global mouse light effect - prominent light following cursor */}
-      <div 
-        className="fixed w-96 h-96 bg-white/10 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
-        style={{
-          left: mousePosition.x - 192,
-          top: mousePosition.y - 192,
-        }}
-      ></div>
-      {/* Secondary cursor glow for enhanced effect */}
-      <div 
-        className="fixed w-48 h-48 bg-slate-300/20 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
-        style={{
-          left: mousePosition.x - 96,
-          top: mousePosition.y - 96,
-        }}
-      ></div>
+      {enableCursorLight && (
+        <>
+          {/* Global mouse light effect - prominent light following cursor */}
+          <div 
+            className="fixed w-96 h-96 bg-white/10 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
+            style={{
+              left: mousePosition.x - 192,
+              top: mousePosition.y - 192,
+            }}
+          ></div>
+          {/* Secondary cursor glow for enhanced effect */}
+          <div 
+            className="fixed w-48 h-48 bg-slate-300/20 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
+            style={{
+              left: mousePosition.x - 96,
+              top: mousePosition.y - 96,
+            }}
+          ></div>
+        </>
+      )}
       
       {/* Floating light orbs */}
       <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-slate-500/3 to-gray-500/3 rounded-full blur-3xl animate-pulse"></div>

@@ -19,6 +19,7 @@ const Skills = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [popoutVisible, setPopoutVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [enableCursorTracking, setEnableCursorTracking] = useState(false);
 
   const skills = [
     { 
@@ -167,13 +168,25 @@ const Skills = () => {
   }, [isMobile]);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    const update = () => setEnableCursorTracking(mediaQuery.matches);
+    update();
+
+    mediaQuery.addEventListener('change', update);
+    return () => mediaQuery.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (!enableCursorTracking) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [enableCursorTracking]);
 
   const getRadius = () => {
     if (typeof window !== 'undefined') {
