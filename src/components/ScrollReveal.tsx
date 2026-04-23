@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, ReactNode } from 'react';
-import useScrollProgress from '@/hooks/useScrollProgress';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -16,60 +15,54 @@ const ScrollReveal = ({
   className = '',
   animation = 'fade-up',
   delay = 0,
-  duration = 600,
-  threshold = 0.2,
+  duration = 500,
+  threshold = 0.1,
   stagger = false
 }: ScrollRevealProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const { velocity, isScrolling } = useScrollProgress();
 
   useEffect(() => {
-    if (!ref.current || hasAnimated) return;
+    const element = ref.current;
+    if (!element || hasAnimated) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setIsVisible(true);
           setHasAnimated(true);
-          
-          // Adjust duration based on scroll velocity
-          const adjustedDuration = isScrolling && velocity > 0.5 
-            ? duration * 0.7 // Faster animation when scrolling quickly
-            : duration;
-          
-          observer.disconnect();
+          observer.unobserve(element);
         }
       },
-      { threshold }
+      { threshold, rootMargin: '50px' }
     );
 
-    observer.observe(ref.current);
+    observer.observe(element);
 
     return () => observer.disconnect();
-  }, [threshold, hasAnimated, isScrolling, velocity, duration]);
+  }, [threshold, hasAnimated]);
 
   const getInitialStyles = () => {
     switch (animation) {
       case 'fade-up':
-        return { opacity: 0, transform: 'translateY(80px)' };
+        return { opacity: 0, transform: 'translateY(30px)' };
       case 'fade-down':
-        return { opacity: 0, transform: 'translateY(-80px)' };
+        return { opacity: 0, transform: 'translateY(-30px)' };
       case 'fade-left':
-        return { opacity: 0, transform: 'translateX(-80px)' };
+        return { opacity: 0, transform: 'translateX(-30px)' };
       case 'fade-right':
-        return { opacity: 0, transform: 'translateX(80px)' };
+        return { opacity: 0, transform: 'translateX(30px)' };
       case 'scale':
-        return { opacity: 0, transform: 'scale(0.7)' };
+        return { opacity: 0, transform: 'scale(0.95)' };
       case 'blur':
-        return { opacity: 0, filter: 'blur(15px)' };
+        return { opacity: 0, filter: 'blur(8px)' };
       case 'rotate':
-        return { opacity: 0, transform: 'rotate(-10deg) scale(0.9)' };
+        return { opacity: 0, transform: 'rotate(-3deg) scale(0.95)' };
       case 'slide-rotate':
-        return { opacity: 0, transform: 'translateX(-100px) rotate(-5deg)' };
+        return { opacity: 0, transform: 'translateX(-40px) rotate(-2deg)' };
       default:
-        return { opacity: 0, transform: 'translateY(80px)' };
+        return { opacity: 0, transform: 'translateY(30px)' };
     }
   };
 
@@ -93,18 +86,17 @@ const ScrollReveal = ({
     }
   };
 
-  const adjustedDuration = isScrolling && velocity > 0.5 ? duration * 0.7 : duration;
-  
   return (
     <div
       ref={ref}
       className={`${className} ${stagger ? 'stagger-animation' : ''}`}
       style={{
         ...getInitialStyles(),
-        transitionProperty: 'all',
-        transitionDuration: `${adjustedDuration}ms`,
-        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionProperty: 'opacity, transform, filter',
+        transitionDuration: `${duration}ms`,
+        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         transitionDelay: `${delay}ms`,
+        willChange: isVisible ? 'auto' : 'opacity, transform',
         ...(isVisible ? getFinalStyles() : {})
       }}
     >

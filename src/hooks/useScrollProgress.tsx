@@ -22,6 +22,16 @@ const useScrollProgress = () => {
     let scrollTimeout: NodeJS.Timeout;
     let velocityTimer: NodeJS.Timeout;
     let lastTimestamp = Date.now();
+    let rafId: number | null = null;
+    let pendingScrollData: ScrollProgress | null = null;
+
+    const updateState = () => {
+      if (pendingScrollData) {
+        setScrollData(pendingScrollData);
+        pendingScrollData = null;
+      }
+      rafId = null;
+    };
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -29,22 +39,27 @@ const useScrollProgress = () => {
       const timeDelta = currentTimestamp - lastTimestamp;
       
       // Calculate scroll velocity
-      const velocity = Math.abs(currentScrollY - lastScrollY) / timeDelta;
+      const velocity = Math.abs(currentScrollY - lastScrollY) / Math.max(timeDelta, 1);
       
       // Calculate scroll progress
       const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollProgress = (currentScrollY / documentHeight) * 100;
+      const scrollProgress = documentHeight > 0 ? (currentScrollY / documentHeight) * 100 : 0;
       
       // Determine scroll direction
       const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
       
-      setScrollData({
+      pendingScrollData = {
         scrollY: currentScrollY,
         scrollProgress: Math.min(100, Math.max(0, scrollProgress)),
         scrollDirection,
         isScrolling: true,
-        velocity
-      });
+        velocity: Math.min(velocity, 5) // Cap velocity to prevent spikes
+      };
+
+      // Throttle state updates using requestAnimationFrame
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateState);
+      }
 
       // Clear existing timeout
       clearTimeout(scrollTimeout);
@@ -64,6 +79,7 @@ const useScrollProgress = () => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(scrollTimeout);
       clearTimeout(velocityTimer);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 

@@ -46,16 +46,16 @@ const NotFound = () => {
       {enableCursorLight && (
         <>
           {/* Global mouse light effect - prominent light following cursor */}
-          <div 
-            className="fixed w-96 h-96 bg-white/10 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
+          <div
+            className="fixed w-96 h-96 bg-white/5 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
             style={{
               left: mousePosition.x - 192,
               top: mousePosition.y - 192,
             }}
           ></div>
           {/* Secondary cursor glow for enhanced effect */}
-          <div 
-            className="fixed w-48 h-48 bg-slate-300/20 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
+          <div
+            className="fixed w-48 h-48 bg-slate-300/10 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
             style={{
               left: mousePosition.x - 96,
               top: mousePosition.y - 96,

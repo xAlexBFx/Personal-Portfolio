@@ -227,6 +227,54 @@ All colors MUST be HSL.
 
 /* Glassmorphism utilities */
 @layer utilities {
+  /* Performance optimizations */
+  .gpu-accelerated {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  .gpu-accelerated-hover {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  .gpu-accelerated-hover:hover {
+    will-change: transform, box-shadow;
+  }
+  
+  /* CSS containment for isolated rendering */
+  .contain-layout {
+    contain: layout;
+  }
+  
+  .contain-paint {
+    contain: paint;
+  }
+  
+  .contain-strict {
+    contain: strict;
+  }
+  
+  .contain-content {
+    contain: content;
+  }
+  
+  /* Content visibility for off-screen content */
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .gpu-accelerated,
+    .gpu-accelerated-hover {
+      will-change: auto;
+      transform: none;
+    }
+  }
+
   /* Base glass effect */
   .glass {
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
@@ -246,11 +294,27 @@ All colors MUST be HSL.
     @apply bg-slate-500/10 backdrop-blur-xl border border-slate-400/20;
   }
   
-  /* Glass card with hover glow */
+  /* Glass card with hover glow - optimized for performance */
   .glass-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
-    @apply transition-all duration-300;
-    @apply hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-slate-500/10;
+    @apply transition duration-300;
+    transition-property: transform, box-shadow, background-color, border-color;
+    will-change: transform;
+    transform: translateZ(0);
+    contain: layout paint;
+  }
+  
+  .glass-card:hover {
+    @apply bg-white/10 border-white/20 shadow-lg shadow-slate-500/10;
+    transform: translateZ(0) scale(1.02);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .glass-card {
+      transition: none;
+      will-change: auto;
+      transform: none;
+    }
   }
   
   /* Floating glass navigation */
@@ -317,11 +381,62 @@ All colors MUST be HSL.
     left: 100%;
   }
   
-  /* Frosted glass variant */
+  /* Frosted glass variant - optimized */
   .frosted {
     @apply backdrop-blur-2xl;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    transform: translateZ(0);
+    contain: layout paint;
+  }
+  
+  /* Project card specific optimizations */
+  .project-card {
+    @apply frosted glass-glow rounded-2xl overflow-hidden;
+    @apply transition duration-500;
+    transition-property: transform, box-shadow;
+    will-change: transform;
+    transform: translateZ(0) scale(1);
+    contain: layout paint style;
+  }
+  
+  .project-card:hover {
+    @apply glass-glow-strong;
+    transform: translateZ(0) scale(1.05);
+  }
+  
+  .project-card .project-image {
+    @apply transition duration-700;
+    transition-property: transform;
+    will-change: transform;
+    transform: translateZ(0) scale(1);
+  }
+  
+  .project-card:hover .project-image {
+    transform: translateZ(0) scale(1.1);
+  }
+  
+  .project-card .project-overlay {
+    @apply transition-opacity duration-500;
+    will-change: opacity;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-card .project-image,
+    .project-card .project-overlay {
+      transition: none;
+      will-change: auto;
+      transform: none;
+    }
+    
+    .project-card:hover {
+      transform: none;
+    }
+    
+    .project-card:hover .project-image {
+      transform: none;
+    }
   }
   
   /* Subtle glass for overlays */

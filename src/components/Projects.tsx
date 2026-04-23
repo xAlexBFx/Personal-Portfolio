@@ -7,9 +7,7 @@ import LazyImage from "@/components/LazyImage";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const Projects = () => {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
-
 
   const handleProjectClick = (index: number) => {
     setSelectedProject(index);
@@ -26,7 +24,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-32 relative">
+    <section id="projects" className="py-32 relative content-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <ScrollReveal animation="fade-up">
@@ -43,27 +41,21 @@ const Projects = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.slice(0, 6).map((project, index) => (
-            <ScrollReveal key={index} animation="fade-up" delay={index * 100} duration={700}>
+            <ScrollReveal key={index} animation="fade-up" delay={index * 80} duration={500}>
             <div
               key={index}
-              className="group relative cursor-pointer"
-              onMouseEnter={() => setHoveredProject(index)}
-              onMouseLeave={() => setHoveredProject(null)}
+              className="project-card group cursor-pointer"
               onClick={() => handleProjectClick(index)}
             >
-              {/* Animated background glow */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-slate-600/0 via-gray-600/0 to-slate-600/0 group-hover:from-slate-600/20 group-hover:via-gray-600/20 group-hover:to-slate-600/20 rounded-3xl blur-xl transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
-              
-              <div className="relative frosted glass-glow rounded-2xl overflow-hidden transform transition-all duration-500 group-hover:scale-105 hover:glass-glow-strong h-full flex flex-col">
-                {/* Image container */}
+              {/* Image container */}
                 <div className="relative overflow-hidden">
                   <LazyImage
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="project-image w-full h-48 object-cover"
                   />
                   {/* Gradient overlay on image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                  <div className="project-overlay absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60 group-hover:opacity-80"></div>
                   
                   {/* Tech stack overlay */}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
@@ -132,14 +124,13 @@ const Projects = () => {
                 {/* Floating corner accent */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-slate-400/20 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               </div>
-            </div>
             </ScrollReveal>
             ))}
         </div>
 
         {/* Project Detail Modal */}
         <Dialog open={selectedProject !== null} onOpenChange={handleOpenChange}>
-          <DialogContent className="max-w-6xl w-[95vw] h-[95vh] max-h-[95vh] frosted border border-white/10 rounded-2xl overflow-hidden p-0 flex flex-col">
+          <DialogContent className="max-w-6xl w-[95vw] h-[90vh] max-h-[90vh] !translate-x-[-50%] !translate-y-[-50%] frosted border border-white/10 rounded-2xl overflow-hidden p-0 flex flex-col">
             <VisuallyHidden>
               <DialogTitle>Project Details</DialogTitle>
               <DialogDescription>
@@ -239,16 +230,16 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </DialogTrigger>
-            <DialogContent className="max-w-none w-screen h-screen p-0 frosted border-0">
-              <DialogHeader className="p-6 border-b border-border/50">
+            <DialogContent className="fixed inset-0 w-full h-full max-w-none p-0 frosted border-0 m-0 rounded-none">
+              <DialogHeader className="p-6 border-b border-border/50 flex-shrink-0">
                 <DialogTitle className="text-3xl font-bold mt-1 text-foreground">All Projects</DialogTitle>
               </DialogHeader>
-              <ScrollArea className="h-full p-6">
+              <ScrollArea className="flex-1 p-6 overflow-y-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6">
                   {projects.map((project, index) => (
                     <div
                       key={index}
-                      className="group relative frosted rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:glass-glow cursor-pointer mt-[4%]"
+                      className="group relative frosted rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:glass-glow cursor-pointer"
                       onClick={() => handleProjectClick(index)}
                     >
                       {/* Image container */}

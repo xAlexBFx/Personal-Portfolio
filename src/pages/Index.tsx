@@ -7,7 +7,6 @@ import Projects from "@/components/Projects";
 import Navigation from "@/components/Navigation";
 import ScrollToTop from "@/components/ScrollToTop";
 import Footer from "@/components/Footer";
-import ScrollProgress from "@/components/ScrollProgress";
 import SmoothScroll from "@/components/SmoothScroll";
 import ParallaxSection from "@/components/ParallaxSection";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -47,16 +46,16 @@ const Index = () => {
         {enableCursorLight && (
           <>
             {/* Global mouse light effect - prominent light following cursor */}
-            <div 
-              className="fixed w-96 h-96 bg-white/10 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
+            <div
+              className="fixed w-96 h-96 bg-white/5 rounded-full blur-3xl transition-all duration-100 ease-out pointer-events-none z-50"
               style={{
                 left: mousePosition.x - 192,
                 top: mousePosition.y - 192,
               }}
             ></div>
             {/* Secondary cursor glow for enhanced effect */}
-            <div 
-              className="fixed w-48 h-48 bg-slate-300/20 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
+            <div
+              className="fixed w-48 h-48 bg-slate-300/10 rounded-full blur-xl transition-all duration-100 ease-out pointer-events-none z-50"
               style={{
                 left: mousePosition.x - 96,
                 top: mousePosition.y - 96,
@@ -71,7 +70,6 @@ const Index = () => {
         <div className="fixed top-1/2 right-1/4 w-64 h-64 bg-gradient-to-r from-slate-600/3 to-gray-600/3 rounded-full blur-3xl animate-pulse delay-2000"></div>
         
         {/* Scroll enhancements */}
-        <ScrollProgress />
         <SmoothScroll />
         
         {/* Content */}

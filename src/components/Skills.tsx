@@ -291,42 +291,56 @@ const Skills = () => {
           </div>
           </ScrollReveal>
 
-          {hoveredSkill !== null && !isScrolling && (
-            <div 
-              className="fixed bg-background/95 backdrop-blur-sm border border-border rounded-2xl p-4 sm:p-6 shadow-2xl w-72 sm:w-80 pointer-events-none"
-              style={{
-                left: '20px',
-                right: 'auto',
-                top: '30%',
-                transform: 'translateY(-50%) translateY(0)',
-                zIndex: 100,
-                maxWidth: 'calc(100vw - 40px)',
-                animation: 'popout 0.3s ease-out',
-                opacity: 1,
-              }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex items-center justify-center">
-                  <img 
-                    src={skills[hoveredSkill].icon} 
-                    alt={skills[hoveredSkill].name} 
-                    className="w-12 h-12 sm:w-16 h-16 lg:w-20 h-20"
-                    style={{
-                      filter: `brightness(0) invert(1) ${skills[hoveredSkill].color}`
-                    }}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground">{skills[hoveredSkill].name}</h3>
-                  <span className="text-sm text-slate-300 font-medium">{skills[hoveredSkill].level}</span>
-                </div>
-              </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {skills[hoveredSkill].description}
-              </p>
-              <div className="absolute -inset-1 bg-gradient-to-r from-slate-600/20 to-gray-600/20 rounded-2xl blur opacity-50"></div>
+          {/* Fixed Technology Info Panel - shows on hover */}
+          <div
+            className="fixed z-50 pointer-events-none transition-all duration-300 ease-out
+              left-4 right-4 bottom-4 sm:left-auto sm:right-6 sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2"
+            style={{
+              opacity: hoveredSkill !== null && !isScrolling ? 1 : 0,
+              transform: hoveredSkill !== null && !isScrolling
+                ? 'translateY(0) translateX(0)'
+                : 'translateY(20px) translateX(0)',
+            }}
+          >
+            <div className="bg-background/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 shadow-2xl w-full sm:w-72 md:w-80 glass-glow mx-auto sm:mx-0 max-w-md">
+              {hoveredSkill !== null && (
+                <>
+                  <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                    <div
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{
+                        background: `linear-gradient(135deg, ${skills[hoveredSkill].color}20, ${skills[hoveredSkill].color}10)`,
+                        border: `1px solid ${skills[hoveredSkill].color}40`
+                      }}
+                    >
+                      <img
+                        src={skills[hoveredSkill].icon}
+                        alt={skills[hoveredSkill].name}
+                        className="w-7 h-7 sm:w-8 sm:h-8"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-lg sm:text-xl font-bold text-foreground truncate">{skills[hoveredSkill].name}</h3>
+                      <span
+                        className="text-xs sm:text-sm font-medium px-2 py-0.5 rounded-full inline-block"
+                        style={{
+                          background: `${skills[hoveredSkill].color}20`,
+                          color: skills[hoveredSkill].color
+                        }}
+                      >
+                        {skills[hoveredSkill].level}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="h-px bg-gradient-to-r from-white/20 to-transparent mb-3 sm:mb-4"></div>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    {skills[hoveredSkill].description}
+                  </p>
+                  <div className="absolute -inset-px bg-gradient-to-r from-slate-600/20 to-gray-600/20 rounded-2xl blur opacity-50 -z-10"></div>
+                </>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </section>
     </>

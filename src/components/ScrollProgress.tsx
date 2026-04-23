@@ -12,19 +12,6 @@ const ScrollProgress = () => {
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
-
-      {/* Side progress indicator */}
-      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block">
-        <div className="relative h-32 w-0.5 bg-border/20">
-          <div 
-            className="absolute bottom-0 w-full bg-gradient-to-t from-blue-500 to-transparent transition-all duration-300 ease-out"
-            style={{ height: `${scrollProgress}%` }}
-          />
-          <div className="absolute -right-8 text-xs text-muted-foreground font-mono">
-            {Math.round(scrollProgress)}%
-          </div>
-        </div>
-      </div>
     </>
   );
 };
